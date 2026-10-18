@@ -1,0 +1,615 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LibraryHub - Ethiopian Book Management System">
+    <title> Book Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+   
+
+   
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <img src="images/logo.JPG" alt="BookNest Logo">
+                </div>
+                
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+                <a href="#dashboard" class="nav-link active">
+                    <span>⌂</span> Dashboard
+                </a>
+
+                <a href="#books" class="nav-link">
+                    <span>▤</span> Books
+                </a>
+
+                <a href="#categories" class="nav-link">
+                    <span>▦</span> Categories
+                </a>
+
+                <a href="#borrowed" class="nav-link">
+                    <span>⇄</span> Borrowed Books
+                </a>
+
+                <a href="#members" class="nav-link">
+                    <span>♙</span> Members
+                </a>
+
+                <a href="#reports" class="nav-link">
+                    <span>▥</span> Reports
+                </a>
+
+                <a href="#settings" class="nav-link">
+                    <span>⚙</span> Settings
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-book-icon">📖</div>
+                <h3>Read More, Grow More</h3>
+                <p>Books build better minds and a brighter future.</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="dashboard">
+
+            <!-- TOP HEADER -->
+            <header class="topbar">
+                <div>
+                    <h2>Welcome back, Librarian!</h2>
+                    <p>Manage your library collection easily.</p>
+                </div>
+
+                <div class="user-profile">
+                    <button class="notification-btn"
+                            type="button"
+                            aria-label="Notifications">
+                        ♧
+                    </button>
+
+                    <div class="avatar">L</div>
+
+                    <div class="user-info">
+                        <strong>Librarian</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- DASHBOARD STATISTICS -->
+            <section class="stats-grid" aria-label="Library statistics">
+
+                <article class="stat-card">
+                    <div class="stat-icon blue">📚</div>
+                    <div>
+                        <p>Total Books</p>
+                        <h3 id="totalBooks">3</h3>
+                        <span>Books in collection</span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <div>
+                        <p>Available Copies</p>
+                        <h3 id="availableBooks">12</h3>
+                        <span>Ready to borrow</span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange">↗</div>
+                    <div>
+                        <p>Borrowed Copies</p>
+                        <h3 id="borrowedBooks">0</h3>
+                        <span>Currently on loan</span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple">♙</div>
+                    <div>
+                        <p>Library Members</p>
+                        <h3 id="totalMembers">0</h3>
+                    <span>Registered members</span>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- BOOK COLLECTION -->
+            <section class="book-section" id="books">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Book Collection</h2>
+                        <p>Discover and manage Ethiopian books.</p>
+                    </div>
+
+                    <button class="primary-btn" id="addBookBtn" type="button">
+                        <span>＋</span> Add Book
+                    </button>
+                </div>
+
+                <!-- SEARCH AND FILTERS -->
+                <div class="toolbar">
+
+                    <label class="search-box">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search title, author, or ISBN..."
+                            aria-label="Search books">
+                    </label>
+
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="">All Categories</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Literature">Literature</option>
+                        <option value="History">History</option>
+                        <option value="Education">Education</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <select id="statusFilter" aria-label="Filter by availability">
+                        <option value="">All Status</option>
+                        <option value="available">Available</option>
+                        <option value="borrowed">On Loan</option>
+                    </select>
+
+                    <select id="sortFilter" aria-label="Sort books">
+                        <option value="title">Sort by Title</option>
+                        <option value="author">Sort by Author</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+
+                </div>
+
+                <!-- BOOK CARDS WILL BE RENDERED HERE -->
+                <div class="books-layout">
+
+                    <div class="book-grid" id="bookGrid">
+
+                        <!-- Sample book 1 -->
+                        <article class="book-card"
+                                 data-book-id="1"
+                                 tabindex="0">
+
+                            <div class="book-cover">
+                                <img
+                                    src="images/almnor.jpg"
+                                    alt="Cover of አለመኖር"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                                <div class="cover-placeholder">
+                                    <span>📕</span>
+                                    <strong>አለመኖር</strong>
+                                </div>
+                            </div>
+
+                            <div class="book-card-info">
+                                <h3>አለመኖር</h3>
+                                <p class="book-author">Author name</p>
+                                <span class="status-badge available">
+                                    ● Available
+                                </span>
+
+                                <div class="book-card-footer">
+                                    <span>▤ 5 copies</span>
+                                    <button
+                                        class="more-btn"
+                                        type="button"
+                                        aria-label="More actions for አለመኖር">
+                                        ⋯
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Sample book 2 -->
+                      <article class="book-card"
+                                 data-book-id="2"
+                                 tabindex="0">
+
+                            <div class="book-cover">
+                                <img
+                                    src="images/fiker esk meikaber.jpg"
+                                    alt="Cover of ፍቅር እስከ መቃብር"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                                <div class="cover-placeholder">
+                                    <span>📗</span>
+                                    <strong>ፍቅር እስከ መቃብር</strong>
+                                </div>
+                            </div>
+
+                            <div class="book-card-info">
+                                <h3>ፍቅር እስከ መቃብር</h3>
+                                <p class="book-author">Author name</p>
+                                <span class="status-badge available">
+                                    ● Available
+                                </span>
+
+                                <div class="book-card-footer">
+                                    <span>▤ 3 copies</span>
+                                    <button
+                                        class="more-btn"
+                                        type="button"
+                                        aria-label="More actions for ፍቅር እስከ መቃብር">
+                                        ⋯
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Sample book 3 -->
+                        <article class="book-card"
+                                 data-book-id="3"
+                                 tabindex="0">
+
+                            <div class="book-cover">
+                                <img
+                                    src="images/gerbab.jpg"
+                                    alt="Cover of ግርባብብ"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                                <div class="cover-placeholder">
+                                    <span>📘</span>
+                                    <strong>ግርባብብ</strong>
+                                </div>
+                            </div>
+
+                            <div class="book-card-info">
+                                <h3>ግርባብብ</h3>
+                                <p class="book-author">Author name</p>
+                                <span class="status-badge available">
+                                    ● Available
+                                </span>
+
+                                <div class="book-card-footer">
+                                    <span>▤ 4 copies</span>
+                                    <button
+                                        class="more-btn"
+                                        type="button"
+                                        aria-label="More actions for ግርባብብ">
+                                        ⋯
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- SELECTED BOOK DETAILS -->
+                    <aside class="book-details" id="bookDetails">
+
+                        <div class="details-cover">
+                            <img id="detailCover"
+                                src="images/almnor.jpg"
+                                alt="Selected book cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                            <div class="cover-placeholder">
+                                <span>📕</span>
+                                <strong>አለመኖር</strong>
+                            </div>
+                        </div>
+
+                        <div class="details-heading">
+                            <h2 id="detailTitle">አለመኖር</h2>
+                            <p id="detailAuthor">Author name</p>
+                            <span class="status-badge available"
+                                  id="detailStatus">
+                                ● Available
+                            </span>
+                        </div>
+
+                        <p class="book-description" id="detailDescription">
+                            Explore this Ethiopian book in the library
+                            collection. Book information can be updated
+                            by the librarian.
+                        </p>
+
+                        <div class="details-list">
+
+                            <div class="detail-row">
+                                <span>Author</span>
+                                <strong id="detailAuthorInfo">Author name</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>ISBN</span>
+                                <strong id="detailISBN">Not provided</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Category</span>
+                                <strong id="detailCategory">Literature</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Published Date</span>
+                                <strong id="detailPublished">Not provided</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Total Copies</span>
+                                <strong id="detailTotalCopies">5</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Available Copies</span>
+                                <strong id="detailAvailableCopies">5</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Location</span>
+                                <strong id="detailLocation">Shelf A1</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="details-actions">
+                            <button
+                                class="primary-btn edit-btn"
+                                id="editBookBtn"
+                                type="button">
+                                ✎ Edit Book
+                            </button>
+
+                            <button
+                                class="danger-btn"
+                                id="deleteBookBtn"
+                                type="button">
+                                ♲ Delete Book
+                            </button>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <span>📚</span>
+                    <h3>No books found</h3>
+                    <p>Try a different search or add a new book.</p>
+                </div>
+
+            </section>
+
+            <!-- BORROWED BOOKS -->
+            <section class="secondary-section" id="borrowed">
+                <div class="section-heading">
+                    <div>
+                        <h2>Borrowed Books</h2>
+                        <p>Track book loans and returns.</p>
+                    </div>
+                </div>
+
+                <div class="simple-panel">
+                    <p>Borrowing and return management will be available
+                       when we implement the next module.</p>
+                </div>
+            </section>
+
+            <!-- CATEGORIES -->
+            <section class="secondary-section" id="categories">
+                <div class="section-heading">
+                    <div>
+                        <h2>Categories</h2>
+                        <p>Organize books by subject.</p>
+                    </div>
+                </div>
+           <div class="category-list">
+                    <span>Fiction</span>
+                    <span>Literature</span>
+                    <span>History</span>
+                    <span>Education</span>
+                    <span>Other</span>
+                </div>
+            </section>
+
+            <!-- MEMBERS -->
+            <section class="secondary-section" id="members">
+                <div class="section-heading">
+                    <div>
+                        <h2>Library Members</h2>
+                        <p>Manage registered readers.</p>
+                    </div>
+                </div>
+
+                <div class="simple-panel">
+                    <p>Member registration and management will be
+                       implemented in a later step.</p>
+                </div>
+            </section>
+
+            <!-- REPORTS -->
+            <section class="secondary-section" id="reports">
+                <div class="section-heading">
+                    <div>
+                        <h2>Reports</h2>
+                        <p>Understand your library collection.</p>
+                    </div>
+                </div>
+
+                <div class="simple-panel">
+                    <p>Library statistics and reports will be connected
+                       to the database in a later step.</p>
+                </div>
+            </section>
+
+            <!-- SETTINGS -->
+            <section class="secondary-section" id="settings">
+                <div class="section-heading">
+                    <div>
+                        <h2>Settings</h2>
+                        <p>Manage your system preferences.</p>
+                    </div>
+                </div>
+
+                <div class="simple-panel">
+                    <p>System settings will be implemented later.</p>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="page-footer">
+                <p>© 2026 LibraryHub · Ethiopian Book Management System</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- ADD / EDIT BOOK MODAL -->
+    <div class="modal-overlay" id="bookModal" hidden>
+        <section class="modal" role="dialog"
+                 aria-modal="true" aria-labelledby="modalTitle">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle">Add New Book</h2>
+                    <p>Enter the book information below.</p>
+                </div>
+
+                <button class="close-modal-btn"
+                        id="closeModalBtn"
+                        type="button"
+                        aria-label="Close form">
+                    ×
+                </button>
+            </div>
+
+            <form id="bookForm">
+
+                <input type="hidden" id="bookId">
+
+                <div class="form-group">
+                    <label for="bookTitle">Book Title *</label>
+                    <input
+                        type="text"
+                        id="bookTitle"
+                        name="title"
+                        placeholder="Enter book title"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookAuthor">Author *</label>
+                    <input
+                        type="text"
+                        id="bookAuthor"
+                        name="author"
+                        placeholder="Enter author name"
+                        required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookISBN">ISBN</label>
+                        <input
+                            type="text"
+                            id="bookISBN"
+                            name="isbn"
+                            placeholder="Book ISBN">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookCategory">Category</label>
+                        <select id="bookCategory" name="category">
+                            <option value="
+                  Literature">Literature</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="History">History</option>
+                            <option value="Education">Education</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookPublished">Published Date</label>
+                        <input
+                            type="date"
+                            id="bookPublished"
+                            name="published_date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookCopies">Total Copies *</label>
+                        <input
+                            type="number"
+                            id="bookCopies"
+                            name="total_copies"
+                            min="1"
+                            value="1"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookLocation">Shelf Location</label>
+                    <input
+                        type="text"
+                        id="bookLocation"
+                        name="location"
+                        placeholder="e.g. Shelf A1">
+                </div>
+
+                <div class="form-group">
+                    <label for="bookDescription">Description</label>
+                    <textarea
+                        id="bookDescription"
+                        name="description"
+                        rows="3"
+                        placeholder="Brief book description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookCover">Cover Image Path</label>
+                    <input
+                        type="text"
+                        id="bookCover"
+                        name="cover"
+                        placeholder="images/alemenor.jpg">
+                </div>
+
+                <div class="modal-actions">
+                    <button
+                        class="secondary-btn"
+                        id="cancelModalBtn"
+                        type="button">
+                        Cancel
+                    </button>
+
+                    <button
+                        class="primary-btn"
+                        id="saveBookBtn"
+                        type="submit">
+                        Save Book
+                    </button>
+                </div>
+
+                <p class="form-message" id="formMessage"
+                   role="status" aria-live="polite"></p>
+
+            </form>
+        </section>
+    </div>
+    <script src="app.js" defer></script>
+
+</body>
+</html>
